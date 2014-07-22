@@ -1,0 +1,27 @@
+'use strict';
+/**
+ * @ngdoc directive
+ *
+ * @name {{resource}}.directive:{{resource}}
+ * @restrict E
+ * @requires {{resource}}.{{resource}}
+ *
+ * @description
+ * Widget for displaying multi-site login forms and currently active {{resource}} across sites.
+ *
+ * Note: Depends on a global {@link {{resource}}.User User} instance set in the scope chain
+ *
+ * @param {string|expression} msg The message to display at the top of the login widget, defaults to nothing
+ */
+ angular.resource('{{resource}}')
+	.directive('{{resource}}', function() {
+		return {
+			templateUrl: 'modules/{{resource}}/views/user.html',
+			restrict: 'E',
+			link: function postLink(scope, element, attrs) {
+				if (attrs.msg) {
+					element.find('.msg').text(attrs.msg).show();
+				}
+			}
+		};
+	});
