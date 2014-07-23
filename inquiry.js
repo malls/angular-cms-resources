@@ -1,4 +1,4 @@
-module.exports = function () {
+module.exports = function (callback) {
 	var app = require('./app');
 	var inquirer = require("inquirer");
 
@@ -21,5 +21,6 @@ module.exports = function () {
 		}], function( answers ) {
 			answers.choices.push('register');
 			app(answers.mod, answers.choices);
+			callback();
 		});
 };
