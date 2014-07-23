@@ -16,11 +16,8 @@ function generator(resource) {
 		var testTpl;
 	    var resources = pluralize(resource);
 	    var Resource = capitalize(resource);
-	    var path = './boilerplates/' + type + '.template';
-	    //test path
-		// var destination = './modules/' + resources;
-		//actual version
-		var destination = '../../app/modules/' + resources;
+	    var path = './node_modules/module-generator/boilerplates/' + type + '.template';
+		var destination = './app/modules/' + resources;
 		
 		function replacer(path) {
 			var template = fs.readFileSync(path);
@@ -34,7 +31,7 @@ function generator(resource) {
 		var tpl = replacer(path);
 
 	    if (type !== 'view'){
-	    	testPath = './boilerplates/' + type + 'test.template';
+	    	testPath = './node_modules/module-generator/boilerplates/' + type + 'test.template';
 			testTpl = replacer(testPath);
 	    }
 
@@ -55,7 +52,6 @@ function generator(resource) {
     for (var i = 0; i < renderables.length; i++) {
     	render(renderables[i], resource);
     }
-
 }
 
 module.exports = generator;
