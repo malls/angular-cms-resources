@@ -6,7 +6,6 @@
     "start": "node app.js"
   },
   "dependencies": {
-    "express": "^4.6.1",
     "fs-extended": "^0.2.0"
   }
 }
