@@ -12,26 +12,31 @@ function pluralize(str) {
 	return str + "s";
 }
 
+
 function render(type, resource) {
+	var testPath;
+	var testTpl;
     var resources = pluralize(resource);
     var Resource = capitalize(resource);
     var path = "./boilerplates/" + type + ".template";
 	var destination = "./modules/" + resources;
-    
-	var tpl = fs.readFileSync(path);
+	//actual version
+	// var destination = "../../app/modules/" + resources;
+	
+	function replacer(path) {
+		var template = fs.readFileSync(path);
+	    template = template + "";
+	    template = template.replace(/{{resources}}/g, resources);
+	    template = template.replace(/{{Resource}}/g, Resource);
+	    template = template.replace(/{{resource}}/g, resource);
+	    return template
+	}
 
-    tpl = tpl + "";
-    tpl = tpl.replace(/{{resources}}/g, resources);
-    tpl = tpl.replace(/{{Resource}}/g, Resource);
-    tpl = tpl.replace(/{{resource}}/g, resource);
+	var tpl = replacer(path)
 
     if (type !== 'view'){
-    	var testPath = "./boilerplates/" + type + "test.template";
-		var testTpl = fs.readFileSync(testPath)
-	    testTpl = testTpl + "";
-	    testTpl = testTpl.replace(/{{resources}}/g, resources);
-	    testTpl = testTpl.replace(/{{Resource}}/g, Resource);
-	    testTpl = testTpl.replace(/{{resource}}/g, resource);
+    	testPath = "./boilerplates/" + type + "test.template";
+		testTpl = replacer(testPath)
     }
 
     if (type === 'register') {
@@ -46,7 +51,6 @@ function render(type, resource) {
     	fs.createFileSync(destination + "/" + pluralize(type) + "/" + resource + ".js", tpl);
     	fs.createFileSync(destination + "/tests/" + pluralize(type) + "/" + resource + ".js", testTpl);
     }
-
 }
 
 app.post('/delete', function(req, res){
