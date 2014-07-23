@@ -1,0 +1,11 @@
+'use strict';
+/**
+ * @ngdoc overview
+ *
+ * @name {{resources}}
+ *
+ * @description
+ * Module for controllers and services related to {{resources}}
+ *
+*/
+ApplicationConfiguration.registerModule('{{resources}}');
