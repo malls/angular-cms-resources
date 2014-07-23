@@ -1,0 +1,20 @@
+'use strict';
+
+describe('Service: {{Resource}}', function() {
+
+	// load the service's module
+	beforeEach(module('unifiedCmsApp'));
+
+	// instantiate service
+	var {{Resource}};
+
+	beforeEach(inject(function(_{{Resource}}) {
+		{{Resource}} = _{{Resource}};
+	}));
+
+	//login
+	it('should be defined', function() {
+		expect({{Resource}}).toBeDefined();
+	});
+
+});

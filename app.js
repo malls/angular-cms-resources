@@ -1,7 +1,6 @@
-function generator(resource) {	
-	var fs = require('fs-extended');
+var fs = require('fs-extended');
 
-	var renderables = ['service', 'directive', 'register', 'routes', 'view', 'controller'];
+function generator(resource, renderables) {	
 
 	function capitalize(str) {
 		return str[0].toUpperCase() + str.slice(1);
