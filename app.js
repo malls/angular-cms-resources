@@ -64,7 +64,7 @@ app.post('/delete', function(req, res){
 });
 
 
-app.get('resource/:resource', function(req, res){
+app.post('/:resource', function(req, res){
     var resource = req.params.resource;
 
     for (var i = 0; i < renderables.length; i++) {
