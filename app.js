@@ -12,7 +12,6 @@ function pluralize(str) {
 	return str + "s";
 }
 
-
 function render(type, resource) {
 	var testPath;
 	var testTpl;
@@ -53,12 +52,18 @@ function render(type, resource) {
     }
 }
 
+app.post('/delete/:module', function(req, res){
+	fs.deleteDir("./modules/" + req.params.module);
+	res.send('module deleted');
+});
+
 app.post('/delete', function(req, res){
 	fs.deleteDir("./modules");
 	res.send('modules deleted');
 });
 
-app.post('/:resource', function(req, res){
+
+app.get('/:resource', function(req, res){
     var resource = req.params.resource;
 
     for (var i = 0; i < renderables.length; i++) {
@@ -68,7 +73,7 @@ app.post('/:resource', function(req, res){
     res.send(resource);
 });
 
-app.get('*', function(req, res){
+app.get('/', function(req, res){
     res.send('you should be posting');
 });
 
