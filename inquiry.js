@@ -1,7 +1,7 @@
 module.exports = function (callback) {
 	var app = require('./app');
 	var inquirer = require("inquirer");
-
+	
 	inquirer.prompt([
 		{
 			message: "What is the name of your module?",

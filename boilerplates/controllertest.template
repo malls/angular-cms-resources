@@ -1,0 +1,22 @@
+'use strict';
+
+describe('Controller: {{Resource}}Ctrl', function() {
+	// load the controller's module
+	beforeEach(module('unifiedCmsApp'));
+
+	var {{Resource}}Ctrl;
+	var scope;
+
+	// Initialize the controller and a mock scope
+	beforeEach(inject(function($controller, $rootScope, User) {
+		scope = $rootScope.$new();
+		{{Resource}}Ctrl = $controller('{{Resource}}Ctrl', {
+			$scope: scope
+		});
+	}));
+
+	it('should be fully tested', function() {
+		expect(true).toBe(false);
+	});
+
+});
