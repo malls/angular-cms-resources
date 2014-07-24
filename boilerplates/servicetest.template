@@ -8,13 +8,12 @@ describe('Service: {{Resource}}', function() {
 	// instantiate service
 	var {{Resource}};
 
-	beforeEach(inject(function(_{{Resource}}) {
-		{{Resource}} = _{{Resource}};
+	beforeEach(inject(function(_{{Resource}}_) {
+		{{Resource}} = _{{Resource}}_;
 	}));
 
-	//login
-	it('should be defined', function() {
-		expect({{Resource}}).toBeDefined();
+	it('should be fully tested', function() {
+		expect(false).toBe(true);
 	});
 
 });

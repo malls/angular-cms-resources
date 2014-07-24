@@ -1,0 +1,13 @@
+'use strict';
+
+// Setting up route
+angular.module('{{resources}}').config(['$routeProvider',
+	function($routeProvider) {
+		// Post editor routing
+		$routeProvider
+			.when('/{{resources}}/:id', {
+				templateUrl: '/modules/{{resources}}/views/main.html',
+				controller: '{{Resource}}Ctrl'
+			});
+	}
+]);

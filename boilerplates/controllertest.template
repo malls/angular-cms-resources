@@ -16,7 +16,7 @@ describe('Controller: {{Resource}}Ctrl', function() {
 	}));
 
 	it('should be fully tested', function() {
-		expect(true).toBe(false);
+		expect(false).toBe(true);
 	});
 
 });
