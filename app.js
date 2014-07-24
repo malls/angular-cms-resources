@@ -36,15 +36,15 @@ function generator(resource, renderables) {
 
 	    if (type === 'register') {
 	    	fs.createFileSync(destination + '/' + resource + '.js', tpl);
-	    	fs.createFileSync(destination + '/tests/' + resource + '.js', testTpl);
+	    	fs.createFileSync(destination + '/test/' + resource + '.js', testTpl);
 	    } else if (type === 'routes') {
 	    	fs.createFileSync(destination + '/routes.js', tpl);
-	    	fs.createFileSync(destination + '/tests/routes.js', testTpl);    
+	    	fs.createFileSync(destination + '/test/routes.js', testTpl);    
 	    } else if (type === 'view') {
 	    	fs.createFileSync(destination + '/views/' + resource + '.html', tpl);
 	    } else {
 	    	fs.createFileSync(destination + '/' + pluralize(type) + '/' + resource + '.js', tpl);
-	    	fs.createFileSync(destination + '/tests/' + pluralize(type) + '/' + resource + '.js', testTpl);
+	    	fs.createFileSync(destination + '/test/' + pluralize(type) + '/' + resource + '.js', testTpl);
 	    }
 	}
 

@@ -1,0 +1,79 @@
+'use strict';
+/**
+ * @ngdoc controller
+ *
+ * @name postEditor.controller:PostEditorCtrl
+ * @requires {{resources}}.User
+ * @requires $scope
+ *
+ * @description
+ * Controller of the postEditor
+ *
+ * Note: Depends on a global {@link {{resources}}.User User} instance set in the scope chain
+ */
+angular.module('postEditor')
+	.controller('PostEditorCtrl', function($scope, $routeParams, Post) {
+		/**
+         * @ngdoc property
+         *
+         * @propertyOf postEditor.controller:PostEditorCtrl
+         * @name postSite
+         *
+         * @description
+         * Augments scope with the site the post should come from, parsed from the url
+         */
+		$scope.postSite = $routeParams.site;
+		/**
+         * @ngdoc property
+         *
+         * @propertyOf postEditor.controller:PostEditorCtrl
+         * @name post
+         *
+         * @description
+         * Augments scope with the an instance of the {@link postEditor.Post Post Service}
+         */
+		$scope.post = null;
+		/**
+	     * @private method
+	     *
+	     * @name fetchPost
+	     * @methodOf postEditor.controller:PostEditorCtrl
+	     *
+	     * @description
+	     * Checks to ensure we have an id an site, and that the user is authed for that site, and retrieves the
+	     * requested post.  Sets post to an instance of {@link postEditor.Post PostService}
+	     */
+		function fetchPost() {
+			//make sure we have an id, a site, and the user is authed for that site
+			if (!$scope.post && $routeParams.id && $scope.postSite && $scope.user.isAuthed($scope.postSite)) {
+				//set the user so their queries are for the correct site
+				$scope.user.setSite($scope.postSite);
+				//get the post and expose it to the view
+				$scope.post = Post.get($routeParams.id);
+			}
+		}
+
+		/**
+	     * @watches user.{{resources}}[$scope.postSite]
+	     *
+	     * @description
+	     * Whenever we have a change in the user, we want to see if we can fetch the post
+		 * this fires on load of the view, so it will always trigger at the start
+	     */
+		$scope.$watch('user.{{resources}}.'+$scope.postSite, function() {
+			fetchPost();
+		});
+
+		$scope.statusOptions = [{name: 'Not Live', value: false}, {name: 'Live', value: true}];
+
+		$scope.typeOptions = [
+			{ value: 'story', name: 'Story' },
+			{ value: 'slideshow', name: 'Slideshow' },
+			{ value: 'poll', name: 'Poll' },
+			{ value: 'video', name: 'Video' },
+			{ value: 'brief', name: 'Brief' },
+			{ value: 'feed', name: 'BI Live' },
+			{ value: 'liveblog', name: 'Live Blog' },
+			{ value: 'quiz', name: 'Quiz' },
+		];
+	});
