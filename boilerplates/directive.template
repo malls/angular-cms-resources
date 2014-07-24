@@ -4,14 +4,11 @@
  *
  * @name {{resources}}.directive:{{resource}}
  * @restrict E
- * @requires {{resources}}.{{Resource}}
  *
  * @description
  * Widget for displaying template for {{resources}}.
  *
- * Note: Depends on a global {@link {{resources}}.{{Resource}} {{Resource}}} instance set in the scope chain
- *
- * @param {string|expression} msg The message to display at the top of the login widget, defaults to nothing
+ * @param {string|expression} attr Description
  */
  angular.resource('{{resources}}')
 	.directive('{{resource}}', function() {
@@ -19,9 +16,7 @@
 			templateUrl: 'modules/{{resources}}/views/{{resource}}.html',
 			restrict: 'E',
 			link: function postLink(scope, element, attrs) {
-				if (attrs.msg) {
-					element.find('.msg').text(attrs.msg).show();
-				}
+				// link DOM element to scope
 			}
 		};
 	});

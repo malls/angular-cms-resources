@@ -8,7 +8,7 @@ describe('Controller: {{Resource}}Ctrl', function() {
 	var scope;
 
 	// Initialize the controller and a mock scope
-	beforeEach(inject(function($controller, $rootScope, User) {
+	beforeEach(inject(function($controller) {
 		scope = $rootScope.$new();
 		{{Resource}}Ctrl = $controller('{{Resource}}Ctrl', {
 			$scope: scope
