@@ -17,7 +17,7 @@ angular.module('{{resources}}')
          * @propertyOf {{resources}}.{{Resource}}
          *
          * @description
-         * Object containing all of a {{resource}}'s {{resource}} objects keyed by each site
+         * Object containing all of a {{resource}}'s {{resource}} objects
          */
 		var {{resources}} = {};
 

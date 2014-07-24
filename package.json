@@ -1,6 +1,7 @@
 {
   "name": "module-generator",
   "version": "0.0.1",
+  "repository": "git+ssh://git@github.com/malls/angular-cms-resources.git",
   "private": true,
   "scripts": {
     "start": "node app.js"
