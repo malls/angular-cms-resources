@@ -8,7 +8,7 @@
  * Service in the {{resource}} module.
  */
 angular.module('{{resources}}')
-	.service('{{resource}}', function {{resource}}() {
+	.service('{{Resource}}', function {{resource}}() {
 
 		/**
          * @ngdoc property
