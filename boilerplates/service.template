@@ -14,7 +14,7 @@ angular.module('{{resources}}')
          * @ngdoc property
          *
          * @name {{resources}}
-         * @propertyOf {{resources}}.{{resource}}
+         * @propertyOf {{resources}}.{{Resource}}
          *
          * @description
          * Object containing all of a {{resource}}'s {{resource}} objects keyed by each site
