@@ -36,7 +36,6 @@ function generator(resource, renderables) {
 
 	    if (type === 'register') {
 	    	fs.createFileSync(destination + '/' + resource + '.js', tpl);
-	    	fs.createFileSync(destination + '/test/' + resource + '.js', testTpl);
 	    } else if (type === 'routes') {
 	    	fs.createFileSync(destination + '/routes.js', tpl);
 	    	fs.createFileSync(destination + '/test/routes.js', testTpl);    

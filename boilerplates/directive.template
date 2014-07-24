@@ -10,7 +10,7 @@
  *
  * @param {string|expression} attr Description
  */
- angular.resource('{{resources}}')
+ angular.module('{{resources}}')
 	.directive('{{resource}}', function() {
 		return {
 			templateUrl: 'modules/{{resources}}/views/{{resource}}.html',
