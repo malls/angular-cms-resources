@@ -1,6 +1,8 @@
+'use strict';
+
 module.exports = function (callback) {
 	var app = require('./app');
-	var inquirer = require("inquirer");
+	var inquirer = require('inquirer');
 	
 	inquirer.prompt([
 		{
@@ -11,12 +13,13 @@ module.exports = function (callback) {
 				if (!input) {
 					done('You need to provide a module name.');
 					return;
-				} else if (typeof input !== 'string'){
-					done('Please enter a valid module name.');
-					return;
 				}
 				done(true);
 			}
+		},
+		{
+			message: 'Is this a nonstandard module?',
+			name: 'nonstandard'
 		},
 		{
 			message: 'Which resources would you like?',
@@ -30,7 +33,14 @@ module.exports = function (callback) {
 				'controller']
 		}], function( answers ) {
 			answers.choices.push('register');
-			app(answers.mod, answers.choices);
+
+			if (answers.nonstandard === 'y' || answers.standard === 'yes' || answers.standard === 'yeah'){
+				answers.nonstandard = true;
+			} else {
+				answers.nonstandard = false;
+			}
+
+			app(answers.mod, answers.choices, answers.nonstandard);
 			callback();
 		});
 };

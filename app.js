@@ -1,6 +1,8 @@
+'use strict';
+
 var fs = require('fs-extended');
 
-function generator(resource, renderables) {	
+function generator(resource, renderables, nonstandard) {	
 
 	function capitalize(str) {
 		return str[0].toUpperCase() + str.slice(1);
@@ -13,10 +15,19 @@ function generator(resource, renderables) {
 	function render(type, resource) {
 		var testPath;
 		var testTpl;
-	    var resources = pluralize(resource);
+		var resources;
 	    var Resource = capitalize(resource);
 	    var path = './node_modules/module-generator/boilerplates/' + type + '.template';
+
+		if (nonstandard){
+			resources = resource;
+		} else {
+	    	resources = pluralize(resource);
+		}
+		
 		var destination = './app/modules/' + resources;
+
+		console.warn(resources);
 		
 		function replacer(path) {
 			var template = fs.readFileSync(path);
