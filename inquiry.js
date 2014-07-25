@@ -3,7 +3,6 @@
 module.exports = function (callback) {
 	var app = require('./app');
 	var inquirer = require('inquirer');
-	var ui = new inquirer.ui.BottomBar();
 
 	inquirer.prompt([
 		{
@@ -19,7 +18,7 @@ module.exports = function (callback) {
 			}
 		},
 		{
-			message: 'Is this a nonstandard module?',
+			message: 'Should this module be pluralized?',
 			name: 'nonstandard',
 			type: 'confirm'
 		},
@@ -33,10 +32,22 @@ module.exports = function (callback) {
 				'routes',
 				'view',
 				'controller']
-		}], function( answers ) {
+		},
+		{
+			message: 'Do you want to create additional views?',
+			name: 'views',
+			when: function(answers){
+				if (answers.choices.indexOf('views') > -1){
+					return true;
+				}
+				return false;
+			}
+		}
+		], function( answers ) {
 			answers.choices.push('register');
-			ui.log.write('Find your new module in app/modules');
-			app(answers.mod, answers.choices, answers.nonstandard);
+			console.log('Find your new module in app/modules');
+			console.log(answers.views);
+			app(answers.mod, answers.choices, !answers.nonstandard);
 			callback();
 		});
 };
