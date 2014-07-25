@@ -2,39 +2,39 @@
 
 var fs = require('fs-extended');
 
-function generator(resource, renderables, nonstandard) {	
+function capitalize(str) {
+	return str[0].toUpperCase() + str.slice(1);
+}
 
-	function capitalize(str) {
-		return str[0].toUpperCase() + str.slice(1);
+function pluralize(str) {
+	return str + 's';
+}
+
+function generator(resource, renderables, views, nonstandard) {	
+	var testPath;
+	var testTpl;
+	var resources;
+    var Resource = capitalize(resource);
+
+	if (nonstandard){
+		resources = resource;
+	} else {
+    	resources = pluralize(resource);
 	}
-
-	function pluralize(str) {
-		return str + 's';
+	
+	var destination = './app/modules/' + resources;
+	
+	function replacer(path) {
+		var template = fs.readFileSync(path);
+	    template = template + '';
+	    template = template.replace(/{{resources}}/g, resources);
+	    template = template.replace(/{{Resource}}/g, Resource);
+	    template = template.replace(/{{resource}}/g, resource);
+	    return template;
 	}
 
 	function render(type, resource) {
-		var testPath;
-		var testTpl;
-		var resources;
-	    var Resource = capitalize(resource);
 	    var path = './node_modules/module-generator/boilerplates/' + type + '.template';
-
-		if (nonstandard){
-			resources = resource;
-		} else {
-	    	resources = pluralize(resource);
-		}
-		
-		var destination = './app/modules/' + resources;
-
-		function replacer(path) {
-			var template = fs.readFileSync(path);
-		    template = template + '';
-		    template = template.replace(/{{resources}}/g, resources);
-		    template = template.replace(/{{Resource}}/g, Resource);
-		    template = template.replace(/{{resource}}/g, resource);
-		    return template;
-		}
 
 		var tpl = replacer(path);
 
@@ -55,6 +55,14 @@ function generator(resource, renderables, nonstandard) {
     for (var i = 0; i < renderables.length; i++) {
     	render(renderables[i], resource);
     }
+
+    views.forEach(function(view){
+	    var path = './node_modules/module-generator/boilerplates/view.template';
+		var tpl = replacer(path);
+		if (view.length > 1) {
+			fs.createFileSync(destination + '/views/' + view + '.html', tpl);
+		}
+    })
 }
 
 module.exports = generator;

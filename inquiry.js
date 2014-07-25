@@ -34,20 +34,20 @@ module.exports = function (callback) {
 				'controller']
 		},
 		{
-			message: 'Do you want to create additional views?',
+			message: 'List any additional views you would like to create.',
 			name: 'views',
 			when: function(answers){
-				if (answers.choices.indexOf('view')) {
+				if (answers.choices.indexOf('view') > -1) {
 					return true;
 				}
 				return false;
 			}
 		}
-		], function( answers ) {
+		], function(answers) {
 			answers.choices.push('register');
 			console.log('Find your new module in app/modules');
-			console.log(answers.views);
-			app(answers.mod, answers.choices, !answers.nonstandard);
+			answers.views = answers.views.split(' ');
+			app(answers.mod, answers.choices, answers.views, !answers.nonstandard);
 			callback();
 		});
 };
