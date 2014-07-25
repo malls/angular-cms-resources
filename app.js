@@ -29,11 +29,6 @@ function generator(resource, renderables) {
 
 		var tpl = replacer(path);
 
-	    if (type !== 'view'){
-	    	testPath = './node_modules/module-generator/boilerplates/' + type + 'test.template';
-			testTpl = replacer(testPath);
-	    }
-
 	    if (type === 'register') {
 	    	fs.createFileSync(destination + '/' + resource + '.js', tpl);
 	    } else if (type === 'routes') {
@@ -41,6 +36,8 @@ function generator(resource, renderables) {
 	    } else if (type === 'view') {
 	    	fs.createFileSync(destination + '/views/' + resource + '.html', tpl);
 	    } else {
+	    	testPath = './node_modules/module-generator/boilerplates/' + type + 'test.template';
+			testTpl = replacer(testPath);
 	    	fs.createFileSync(destination + '/' + pluralize(type) + '/' + resource + '.js', tpl);
 	    	fs.createFileSync(destination + '/test/' + pluralize(type) + '/' + resource + '.js', testTpl);
 	    }
