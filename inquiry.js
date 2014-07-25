@@ -21,13 +21,13 @@ module.exports = function (callback) {
 		{
 			message: 'Which resources would you like?',
 			name: 'choices',
-			type: 'checkbox'
+			type: 'checkbox',
 			choices: 
 				['service',
 				'directive', 
 				'routes',
 				'view',
-				'controller'],
+				'controller']
 		}], function( answers ) {
 			answers.choices.push('register');
 			app(answers.mod, answers.choices);
