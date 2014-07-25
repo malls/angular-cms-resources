@@ -27,8 +27,6 @@ function generator(resource, renderables, nonstandard) {
 		
 		var destination = './app/modules/' + resources;
 
-		console.warn(resources);
-		
 		function replacer(path) {
 			var template = fs.readFileSync(path);
 		    template = template + '';
