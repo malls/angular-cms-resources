@@ -19,7 +19,6 @@ module.exports = function (callback) {
 			choices: 
 				['service',
 				'directive', 
-				'register', 
 				'routes',
 				'view',
 				'controller'],
@@ -27,6 +26,7 @@ module.exports = function (callback) {
 			name: 'choices',
 			type: 'checkbox'
 		}], function( answers ) {
+			answers.choices.push('register');
 			app(answers.mod, answers.choices);
 			callback();
 		});
