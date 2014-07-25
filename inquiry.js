@@ -37,7 +37,7 @@ module.exports = function (callback) {
 			message: 'Do you want to create additional views?',
 			name: 'views',
 			when: function(answers){
-				if (answers.choices.indexOf('views') > -1){
+				if (Array.contains(answers.choices, 'views')){
 					return true;
 				}
 				return false;
