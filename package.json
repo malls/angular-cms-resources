@@ -3,9 +3,6 @@
   "version": "0.0.1",
   "repository": "git+ssh://git@github.com/malls/angular-cms-resources.git",
   "private": true,
-  "scripts": {
-    "start": "node app.js"
-  },
   "dependencies": {
     "fs-extended": "^0.2.0",
     "inquirer": "^0.5.1"

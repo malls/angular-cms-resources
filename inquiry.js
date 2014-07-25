@@ -4,8 +4,16 @@ module.exports = function (callback) {
 	
 	inquirer.prompt([
 		{
-			message: "What is the name of your module?",
-			name: 'mod'
+			message: 'What is the name of your module?',
+			name: 'mod',
+			validate: function(input) {
+				var done = this.async();
+				if (!input) {
+					done('You need to provide a module name.');
+					return;
+				}
+				done(true);
+			}
 		},
 		{
 			choices: 
@@ -15,7 +23,7 @@ module.exports = function (callback) {
 				'routes',
 				'view',
 				'controller'],
-			message: "Which resources would you like?",
+			message: 'Which resources would you like?',
 			name: 'choices',
 			type: 'checkbox'
 		}], function( answers ) {
