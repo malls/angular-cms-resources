@@ -3,7 +3,8 @@
 module.exports = function (callback) {
 	var app = require('./app');
 	var inquirer = require('inquirer');
-	
+	var ui = new inquirer.ui.BottomBar();
+
 	inquirer.prompt([
 		{
 			message: 'What is the name of your module?',
@@ -19,7 +20,8 @@ module.exports = function (callback) {
 		},
 		{
 			message: 'Is this a nonstandard module?',
-			name: 'nonstandard'
+			name: 'nonstandard',
+			type: 'confirm'
 		},
 		{
 			message: 'Which resources would you like?',
@@ -33,13 +35,7 @@ module.exports = function (callback) {
 				'controller']
 		}], function( answers ) {
 			answers.choices.push('register');
-
-			if (answers.nonstandard === 'y' || answers.standard === 'yes' || answers.standard === 'yeah'){
-				answers.nonstandard = true;
-			} else {
-				answers.nonstandard = false;
-			}
-
+			ui.log.write('Find your new module in app/modules');
 			app(answers.mod, answers.choices, answers.nonstandard);
 			callback();
 		});
