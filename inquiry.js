@@ -5,7 +5,6 @@ module.exports = function (callback) {
 	inquirer.prompt([
 		{
 			message: 'What is the name of your module?',
-			name: 'mod',
 			validate: function(input) {
 				var done = this.async();
 				if (!input) {
@@ -13,7 +12,8 @@ module.exports = function (callback) {
 					return;
 				}
 				done(true);
-			}
+			},
+			name: 'mod'
 		},
 		{
 			choices: 
