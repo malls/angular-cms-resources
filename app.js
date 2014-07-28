@@ -55,14 +55,15 @@ function generator(resource, renderables, views, nonstandard) {
     for (var i = 0; i < renderables.length; i++) {
     	render(renderables[i], resource);
     }
-
-    views.forEach(function(view){
-	    var path = './node_modules/module-generator/boilerplates/view.template';
-		var tpl = replacer(path);
-		if (view.length > 1) {
-			fs.createFileSync(destination + '/views/' + view + '.html', tpl);
-		}
-    })
+    if (views) {
+	    views.forEach(function(view){
+		    var path = './node_modules/module-generator/boilerplates/view.template';
+			var tpl = replacer(path);
+			if (view.length > 1) {
+				fs.createFileSync(destination + '/views/' + view + '.html', tpl);
+			}
+	    });
+    }
 }
 
 module.exports = generator;
