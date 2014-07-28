@@ -46,7 +46,9 @@ module.exports = function (callback) {
 		], function(answers) {
 			answers.choices.push('register');
 			console.log('Find your new module in app/modules');
-			answers.views = answers.views.split(' ');
+			if (answers.views) {
+				answers.views = answers.views.split(' ');
+			}
 			app(answers.mod, answers.choices, answers.views, !answers.nonstandard);
 			callback();
 		});
