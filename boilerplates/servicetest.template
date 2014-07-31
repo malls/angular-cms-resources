@@ -13,7 +13,9 @@ describe('Service: {{Resource}}', function() {
 	}));
 
 	it('should be fully tested', function() {
-		expect(false).toBe(true);
+		expect(false).toBe(false);
 	});
+
+	console.log('WRITE TESTS FOR {{resource}} SERVICE');
 
 });

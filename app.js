@@ -39,6 +39,7 @@ function generator(resource, renderables, views, nonstandard) {
 		var tpl = replacer(path);
 
 	    if (type === 'register') {
+	    	// to do: this needs to be rendered conditionally
 	    	fs.createFileSync(destination + '/' + resource + '.js', tpl);
 	    } else if (type === 'routes') {
 	    	fs.createFileSync(destination + '/routes.js', tpl);
