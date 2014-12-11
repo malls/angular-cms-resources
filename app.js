@@ -44,7 +44,9 @@ function generator(resource, renderables, views, nonstandard) {
 	    } else if (type === 'routes') {
 	    	fs.createFileSync(destination + '/routes.js', tpl);
 	    } else if (type === 'view') {
-	    	fs.createFileSync(destination + '/views/' + resource + '.html', tpl);
+	    	fs.createFileSync(destination + '/views/' + resource + '.html', tpl);	    
+	    } else if (type === 'stylesheet') {
+	    	fs.createFileSync(destination + '/styles/' + resource + '.scss', tpl);
 	    } else {
 	    	testPath = './node_modules/module-generator/boilerplates/' + type + 'test.template';
 			testTpl = replacer(testPath);

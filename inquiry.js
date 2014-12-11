@@ -31,6 +31,7 @@ module.exports = function (callback) {
 				'directive', 
 				'routes',
 				'view',
+				'stylesheet',
 				'controller']
 		},
 		{
