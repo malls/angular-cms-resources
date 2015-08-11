@@ -41,8 +41,6 @@ function generator(resource, renderables, views, nonstandard) {
 	    if (type === 'register') {
 	    	// to do: this needs to be rendered conditionally
 	    	fs.createFileSync(destination + '/' + resource + '.js', tpl);
-	    } else if (type === 'routes') {
-	    	fs.createFileSync(destination + '/routes.js', tpl);
 	    } else if (type === 'view') {
 	    	fs.createFileSync(destination + '/views/' + resource + '.html', tpl);	    
 	    } else if (type === 'stylesheet') {
