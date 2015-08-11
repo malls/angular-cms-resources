@@ -2,7 +2,7 @@
 /**
  * @ngdoc controller
  *
- * @name {{resources}}.controller:{{Resource}}Ctrl
+ * @name {{resources}}.controller:{{Resource}}Controller
  * @requires $scope
  *
  * @description
@@ -10,6 +10,6 @@
  *
  */
 angular.module('{{resources}}')
-	.controller('{{Resource}}Ctrl', function($scope) {
+	.controller('{{Resource}}Controller', function($scope) {
 	
 	});

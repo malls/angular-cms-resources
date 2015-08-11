@@ -1,16 +1,16 @@
 'use strict';
 
-describe('Controller: {{Resource}}Ctrl', function() {
+describe('Controller: {{Resource}}Controller', function() {
 	// load the controller's module
 	beforeEach(module('unifiedCmsApp'));
 
-	var {{Resource}}Ctrl;
+	var {{Resource}}Controller;
 	var scope;
 
 	// Initialize the controller and a mock scope
 	beforeEach(inject(function($controller, $rootScope) {
 		scope = $rootScope.$new();
-		{{Resource}}Ctrl = $controller('{{Resource}}Ctrl', {
+		{{Resource}}Controller = $controller('{{Resource}}Controller', {
 			$scope: scope
 		});
 	}));
