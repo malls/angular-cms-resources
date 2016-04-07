@@ -15,6 +15,7 @@ function generator(resource, renderables, views, nonstandard) {
 	var testTpl;
 	var resources;
     var Resource = capitalize(resource);
+    var Resources = pluralize(Resource);
 
 	if (nonstandard){
 		resources = resource;
@@ -29,6 +30,7 @@ function generator(resource, renderables, views, nonstandard) {
 	    template = template + '';
 	    template = template.replace(/{{resources}}/g, resources);
 	    template = template.replace(/{{Resource}}/g, Resource);
+	    template = template.replace(/{{Resources}}/g, Resources);
 	    template = template.replace(/{{resource}}/g, resource);
 	    return template;
 	}
