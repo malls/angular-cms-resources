@@ -11,7 +11,7 @@
 	 */
 	angular.module('{{resources}}').service({{Resource}});
 
-	function {{Resource}}() {
+	function {{Resource}}($resource) {
 		/**
          * @ngdoc property
          *
@@ -21,9 +21,69 @@
          * @description
          * Object containing all of a {{resource}}'s methods
          */
-		var {{resources}} = {};
+		var {{resources}} = {
+			get: get,
+			create: create
+		};
 
 		return {{resources}};
+
+		/*
+		 * Public methods
+		 */
+		function get(id) {
+			return {{Resource}}Resource(apiUrl()).get({
+				id: id ? id : ''
+			}, angular.noop, function(err) {
+				console.log('err', err);
+			});
+		}
+
+		function create() {
+			var {{Resource}} = {{Resource}}Resource(apiUrl());
+			return new {{Resource}}();
+		}
+
+		/*
+		 * Private methods
+		 */
+		function apiUrl() {
+			return ApplicationConfiguration.apiDomain + '/{{resources}}/:id';
+		}
+
+		var requesters = {
+			get: {
+				method: 'GET',
+				transformResponse: function(data, headers, status) {
+					if (status >= 400) return;
+					data = data ? JSON.parse(data).result : {};
+					return data;
+				}
+			},
+			create: {
+				method: 'POST',
+				transformResponse: function(data, headers, status) {
+					if (status >= 400) return;
+					data = data ? JSON.parse(data).result : {};
+					return data;
+				}
+			},
+			save: {
+				method: 'POST',
+				transformResponse: function(data, headers, status) {
+					if (status >= 400) return;
+					data = data ? JSON.parse(data).result : {};
+					return data;
+				}
+			}
+		};
+
+		function {{Resource}}Resource(api) {
+			return $resource(api, {
+				id: '@_id'
+			}, requesters);
+		}
+
 	}
 
 })(angular);
