@@ -1,15 +1,18 @@
-'use strict';
-/**
- * @ngdoc controller
- *
- * @name {{resources}}.controller:{{Resource}}Controller
- * @requires $scope
- *
- * @description
- * Controller of the {{resources}}
- *
- */
-angular.module('{{resources}}')
-	.controller('{{Resource}}Controller', function($scope) {
+(function(angular, undefined) {
+	'use strict';
 	
-	});
+	/**
+	 * @ngdoc controller
+	 *
+	 * @name {{resources}}.controller:{{Resource}}Controller
+	 * @requires $scope
+	 *
+	 * @description
+	 * Controller of the {{resources}}
+	 *
+	 */
+	angular.module('{{resources}}').controller({{Resource}}Controller);
+
+	function {{Resource}}Controller($scope) {}
+
+})(angular);

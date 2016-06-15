@@ -1,57 +1,61 @@
-'use strict';
-/**
- * @ngdoc overview
- *
- * @name {{resources}}
- *
- * @description
- * Module for controllers and services related to {{resources}}
- *
-*/
-ApplicationConfiguration.registerModule('{{resources}}');
+(function(angular, undefined) {
+	'use strict';
+	
+	/**
+	 * @ngdoc overview
+	 *
+	 * @name {{resources}}
+	 *
+	 * @description
+	 * Module for controllers and services related to {{resources}}
+	 *
+	*/
+	ApplicationConfiguration.registerModule('{{resources}}');
 
-//Define main module, add module dependencies and write config for 'states'
-angular.module('{{resources}}')
-	.config(function($stateProvider) {
-		$stateProvider
-			.state('{{resources}}', {
-				abstract: true,
-				url: '/{{resources}}',
-				templateUrl: '/modules/{{resources}}/views/{{resource}}-index.html',
-				controller: ['$scope', function($scope) {
-					//update change to controller name after writing
-				}]
-			})
-			.state('{{resources}}.index', {
-				url: '/:site',
-				views: {
-					list: {
-						templateUrl: '/modules/{{resources}}/views/{{resource}}-list.html',
-						controller: ['$scope', function($scope) {
-							//update change to controller name after writing
+	//Define main module, add module dependencies and write config for 'states'
+	angular.module('{{resources}}')
+		.config(function($stateProvider) {
+			$stateProvider
+				.state('{{resources}}', {
+					abstract: true,
+					url: '/{{resources}}',
+					templateUrl: '/modules/{{resources}}/views/{{resource}}-index.html',
+					controller: ['$scope', function($scope) {
+						//change to controller name after writing
+					}]
+				})
+				.state('{{resources}}.index', {
+					url: '/:site',
+					views: {
+						list: {
+							templateUrl: '/modules/{{resources}}/views/{{resource}}-list.html',
+							controller: ['$scope', function($scope) {
+								//change to controller name after writing
+							}]
+						}
+					},
+					resolve: {
+						get{{Resources}}: ['$http', '$stateParams', 'Search', function($http, $stateParams, Search) {
+							return [];
 						}]
 					}
-				},
-				resolve: {
-					get{{Resources}}: ['$http', '$stateParams', 'Search', function($http, $stateParams, Search) {
-						return [];
-					}]
-				}
-			})
-			.state('{{resources}}.edit', {
-				url: '/:id/:site',
-				views: {
-					'content': {
-						templateUrl: '/modules/{{resources}}/views/{{resource}}-editor.html',
-						controller: ['$scope', function($scope) {
-							//update change to controller name after writing
-						}]
+				})
+				.state('{{resources}}.edit', {
+					url: '/:id/:site',
+					views: {
+						'content': {
+							templateUrl: '/modules/{{resources}}/views/{{resource}}-editor.html',
+							controller: ['$scope', function($scope) {
+								//change to controller name after writing
+							}]
+						},
 					},
-				},
-				resolve: {
-					get{{Resource}}: ['$stateParams', function($stateParams) {
-						return {};
-					}]
-				}
-			});
-	});
+					resolve: {
+						get{{Resource}}: ['$stateParams', function($stateParams) {
+							return {};
+						}]
+					}
+				});
+		});
+
+})(angular);

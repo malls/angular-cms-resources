@@ -1,17 +1,20 @@
-'use strict';
-/**
- * @ngdoc directive
- *
- * @name {{resources}}.directive:{{resource}}
- * @restrict E
- *
- * @description
- * Widget for displaying template for {{resources}}.
- *
- * @param {string|expression} attr Description
- */
- angular.module('{{resources}}')
-	.directive('{{resource}}', function() {
+(function(angular, undefined) {
+	'use strict';
+
+	/**
+	 * @ngdoc directive
+	 *
+	 * @name {{resources}}.directive:{{resource}}
+	 * @restrict E
+	 *
+	 * @description
+	 * Widget for displaying template for {{resources}}.
+	 *
+	 * @param {string|expression} attr Description
+	 */
+	 angular.module('{{resources}}').directive({{resource}});
+
+	function {{resource}}() {
 		return {
 			templateUrl: 'modules/{{resources}}/views/{{resource}}.html',
 			restrict: 'E',
@@ -19,4 +22,6 @@
 				// link DOM element to scope
 			}
 		};
-	});
+	}
+
+})(angular);

@@ -1,15 +1,17 @@
-'use strict';
-/**
- * @ngdoc service
- *
- * @name {{resources}}.{{Resource}}
- *
- * @description
- * Service in the {{resource}} module.
- */
-angular.module('{{resources}}')
-	.service('{{Resource}}', function {{resource}}() {
+(function(angular, undefined) {
+	'use strict';
 
+	/**
+	 * @ngdoc service
+	 *
+	 * @name {{resources}}.{{Resource}}
+	 *
+	 * @description
+	 * Service in the {{resource}} module.
+	 */
+	angular.module('{{resources}}').service({{Resource}});
+
+	function {{Resource}}() {
 		/**
          * @ngdoc property
          *
@@ -17,12 +19,11 @@ angular.module('{{resources}}')
          * @propertyOf {{resources}}.{{Resource}}
          *
          * @description
-         * Object containing all of a {{resource}}'s {{resource}} objects
+         * Object containing all of a {{resource}}'s methods
          */
 		var {{resources}} = {};
 
-		return {
-			//documented at the top
-			{{resources}}: {{resources}}
-		};
-	});
+		return {{resources}};
+	}
+
+})(angular);
