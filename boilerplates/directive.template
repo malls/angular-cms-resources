@@ -18,10 +18,12 @@
 		return {
 			templateUrl: 'modules/{{resources}}/views/{{resource}}.html',
 			restrict: 'E',
-			link: function postLink(scope, element, attrs) {
-				// link DOM element to scope
-			}
+			link: postLink
 		};
+
+		function postLink(scope, element, attrs) {
+		  // link DOM element to scope
+    }
 	}
 
 })(angular);
