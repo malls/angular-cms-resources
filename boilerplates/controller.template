@@ -13,6 +13,9 @@
 	 */
 	angular.module('{{resources}}').controller({{Resource}}Controller);
 
+  /**
+   * @ngInject
+   */
 	function {{Resource}}Controller($scope) {}
 
 })(angular);
