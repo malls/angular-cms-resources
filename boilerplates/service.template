@@ -11,9 +11,9 @@
 	 */
 	angular.module('{{resources}}').service({{Resource}});
 
-  /**
-   * @ngInject
-   */
+	/**
+	 * @ngInject
+	 */
 	function {{Resource}}($resource) {
 		/**
          * @ngdoc property

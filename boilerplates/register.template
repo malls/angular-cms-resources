@@ -21,7 +21,7 @@
 					url: '/{{resources}}',
 					templateUrl: '/modules/{{resources}}/views/{{resource}}-index.html',
 					controller: ['$scope', function($scope) {
-						//change to controller name after writing
+						//after writing, please move to separate controller file and reference it here with the controller name
 					}]
 				})
 				.state('{{resources}}.index', {
@@ -30,14 +30,12 @@
 						list: {
 							templateUrl: '/modules/{{resources}}/views/{{resource}}-list.html',
 							controller: ['$scope', function($scope) {
-								//change to controller name after writing
+								//after writing, please move to separate controller file and reference it here with the controller name
 							}]
 						}
 					},
 					resolve: {
-						get{{Resources}}: ['$http', '$stateParams', 'Search', function($http, $stateParams, Search) {
-							return [];
-						}]
+						get{{Resources}}: get{{Resources}}
 					}
 				})
 				.state('{{resources}}.edit', {
@@ -46,16 +44,23 @@
 						'content': {
 							templateUrl: '/modules/{{resources}}/views/{{resource}}-editor.html',
 							controller: ['$scope', function($scope) {
-								//change to controller name after writing
+								//after writing, please move to separate controller file and reference it here with the controller name
 							}]
 						},
 					},
 					resolve: {
-						get{{Resource}}: ['$stateParams', function($stateParams) {
-							return {};
-						}]
+						get{{Resource}}: get{{Resource}}
 					}
 				});
 		});
+
+
+		function get{{Resource}}($stateParams) {
+			return {};
+		}
+
+		function get{{Resources}}($http, $stateParams, Search) {
+			return {};
+		}
 
 })(angular);
