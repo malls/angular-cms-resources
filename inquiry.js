@@ -45,7 +45,7 @@ module.exports = function (callback) {
 		}
 		], function(answers) {
 			answers.choices.push('register');
-			console.log('Find your new module in app/modules. You will need to include js and css files in app/index.html, and add any routes to app/scripts/app.js.');
+			console.log('Find your new module in app/modules. You will need to include js and css files in app/index.html.');
 			if (answers.views) {
 				answers.views = answers.views.split(' ');
 			}
