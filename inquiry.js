@@ -49,7 +49,13 @@ module.exports = function (callback) {
 			if (answers.views) {
 				answers.views = answers.views.split(' ');
 			}
-			app(answers.mod, answers.choices, answers.views, !answers.nonstandard);
-			callback();
+			var files = app(answers.mod, answers.choices, answers.views, !answers.nonstandard);
+
+			// var testFiles = app(answers.mod, answers.choices);
+
+			console.log("this is answers.choices in inquiry.js: ", answers.choices);
+
+
+			callback(files);
 		});
 };
