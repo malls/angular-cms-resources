@@ -17,6 +17,7 @@ function generator(resource, renderables, views, nonstandard) {
     var Resource = capitalize(resource);
     var Resources = pluralize(Resource);
     var files = [];
+    var mainScript;
 
 	if (nonstandard){
 		resources = resource;
@@ -39,9 +40,12 @@ function generator(resource, renderables, views, nonstandard) {
 	}
 
 	function addScriptLink(fileLinksArray){
+		files = files.sort();
 		var htmlFileText = fs.readFileSync('./app/index.html','utf8');
 		var indexTarget = '<!-- grunt module targets here -->';
 		var scriptLinksString = '';
+
+		scriptLinksString += '<script src="' + mainScript + '">' + '</script>\n' + scriptLinkIndent;
 
 		for (var i = 0; i < fileLinksArray.length; i++) {
 			scriptLinksString += '<script src="' + fileLinksArray[i] + '">' + '</script>\n' + scriptLinkIndent;
@@ -64,7 +68,7 @@ function generator(resource, renderables, views, nonstandard) {
 	    	// to do: this needs to be rendered conditionally
 	    	scriptLinksPath = scriptLinks + '/' + resource + '.js';
 	    	fs.createFileSync(destination + '/' + resource + '.js', tpl);
-	    	files.push(scriptLinksPath);
+	    	mainScript = scriptLinksPath;
 	    } else if (type === 'view') {
 	    	fs.createFileSync(destination + '/views/' + resource + '.html', tpl);
 	    } else if (type === 'stylesheet') {
