@@ -51,9 +51,7 @@ function generator(resource, renderables, views, nonstandard) {
 
 		var newhtmlFileText = htmlFileText.replace(indexTarget, scriptLinksString);
 
-		if (!(htmlFileText.indexOf(scriptLinksString) !== -1)) {
-			fs.writeFileSync('./app/index.html', newhtmlFileText);
-		}
+		fs.writeFileSync('./app/index.html', newhtmlFileText);
 	}
 
 	function render(type, resource) {
