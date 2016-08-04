@@ -17,6 +17,7 @@ function generator(resource, renderables, views, nonstandard) {
     var Resource = capitalize(resource);
     var Resources = pluralize(Resource);
     var files = [];
+    var styleLinksPath;
     var mainScript;
 
 	if (nonstandard){
@@ -58,6 +59,18 @@ function generator(resource, renderables, views, nonstandard) {
 		fs.writeFileSync('./app/index.html', newhtmlFileText);
 	}
 
+	function addStylesLink(styleLinksPath){
+		var stylesHtmlFileText = fs.readFileSync('./app/index.html','utf8');
+		// console.log("-------------->This is styleLinksArray inside of addStylesLink: ", styleLinksArray);
+		var indexStylesheetTarget = '<!-- grunt module style link targets here -->';
+
+		var styleLinksString = '<link rel="stylesheet" href="styles/' + styleLinksPath + '">' + '\n' + scriptLinkIndent + indexStylesheetTarget;
+
+		var htmlFileWithLinkAdded = stylesHtmlFileText.replace(indexStylesheetTarget, styleLinksString);
+
+		fs.writeFileSync('./app/index.html', htmlFileWithLinkAdded);
+	}
+
 	function render(type, resource) {
 		//push scriptLinksPath to files array if it's not a test
 	    var path = './node_modules/module-generator/boilerplates/' + type + '.template';
@@ -72,6 +85,7 @@ function generator(resource, renderables, views, nonstandard) {
 	    } else if (type === 'view') {
 	    	fs.createFileSync(destination + '/views/' + resource + '.html', tpl);
 	    } else if (type === 'stylesheet') {
+	    	styleLinksPath = resources + '.scss';
 	    	fs.createFileSync('app/styles/' + resource + '.scss', tpl);
 	    } else {
 	    	testPath = './node_modules/module-generator/boilerplates/' + type + 'test.template';
@@ -95,6 +109,8 @@ function generator(resource, renderables, views, nonstandard) {
 			}
 	    });
     }
+
+    addStylesLink(styleLinksPath);
 
     addScriptLink(files);
 
