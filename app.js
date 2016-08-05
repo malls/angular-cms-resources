@@ -49,7 +49,12 @@ function generator(resource, renderables, views, nonstandard) {
 		scriptLinksString += '<script src="' + mainScript + '">' + '</script>\n' + scriptLinkIndent;
 
 		for (var i = 0; i < fileLinksArray.length; i++) {
-			scriptLinksString += '<script src="' + fileLinksArray[i] + '">' + '</script>\n' + scriptLinkIndent;
+			if (i !== (fileLinksArray.length -1)) {
+				scriptLinksString += '<script src="' + fileLinksArray[i] + '">' + '</script>\n' + scriptLinkIndent;
+			} else {
+				//don't add whitespace on the last line
+				scriptLinksString += '<script src="' + fileLinksArray[i] + '">' + '</script>\n';
+			}
 		}
 
 		scriptLinksString += '\n' + scriptLinkIndent + indexTarget;
@@ -61,7 +66,7 @@ function generator(resource, renderables, views, nonstandard) {
 
 	function addStylesLink(styleLinksPath){
 		var stylesHtmlFileText = fs.readFileSync('./app/index.html','utf8');
-		// console.log("-------------->This is styleLinksArray inside of addStylesLink: ", styleLinksArray);
+
 		var indexStylesheetTarget = '<!-- grunt module style link targets here -->';
 
 		var styleLinksString = '<link rel="stylesheet" href="styles/' + styleLinksPath + '">' + '\n' + scriptLinkIndent + indexStylesheetTarget;
@@ -79,9 +84,8 @@ function generator(resource, renderables, views, nonstandard) {
 
 	    if (type === 'register') {
 	    	// to do: this needs to be rendered conditionally
-	    	scriptLinksPath = scriptLinks + '/' + resource + '.js';
 	    	fs.createFileSync(destination + '/' + resource + '.js', tpl);
-	    	mainScript = scriptLinksPath;
+	    	mainScript = scriptLinks + '/' + resource + '.js';
 	    } else if (type === 'view') {
 	    	fs.createFileSync(destination + '/views/' + resource + '.html', tpl);
 	    } else if (type === 'stylesheet') {
